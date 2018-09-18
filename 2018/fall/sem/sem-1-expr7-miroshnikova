@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double k = int.Parse(Console.ReadLine());
+            int m = int.Parse(Console.ReadLine());
+            double k1 = -1*(1 / k);//координата для перпендикулярного вектора
+            Console.Write("Вектор параллельный: (1,");
+            Console.Write(k);
+            Console.WriteLine(")");
+            Console.Write("Вектор перпендикулярный: (1,");
+            Console.Write(k1);
+            Console.WriteLine(")");
+            Console.ReadKey();
+        }
+    }
+}
