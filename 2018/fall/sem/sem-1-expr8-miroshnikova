@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7//Мирошникова льга 11-808 семинар 1 задача 8
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int x1 = int.Parse(Console.ReadLine());
+            int y1 = int.Parse(Console.ReadLine());//первая точка прямой
+            int x2 = int.Parse(Console.ReadLine());
+            int y2 = int.Parse(Console.ReadLine());//вторая точка прямой
+            int x3 = int.Parse(Console.ReadLine());
+            int y3 = int.Parse(Console.ReadLine());//точка, из которой опускают перпендикуляр
+            double k1 = (y1 - y2) / (x1 - x2);//угловой коэффициент прямой
+            double m1 = y1 - k1 * x1;//числовой коэффициент прямой
+            double k3 = -1 * (1 / k1);//угловой коэффициент перпендикуляра
+            double m3 = y3 - k1 * x3;//числовой коэффициент перпендикуляра
+            double x4 = (m3 - m1) / (k1 - k3);//абцисса искомой точки
+            double y4 = (k1 * x4) + m1;//ордината искомой точки
+
+            Console.WriteLine(x4);
+            Console.WriteLine(y4);//вывод ответа
+            Console.ReadKey();
+        }
+    }
+}
