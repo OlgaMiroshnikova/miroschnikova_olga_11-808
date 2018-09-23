@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp8//Мирошникова Ольга 11-808 семинар2 задача4 
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double l = int.Parse(Console.ReadLine());//сторона квадрата-огорода
+            double r = int.Parse(Console.ReadLine());//радиус круга под влиянием козы
+            double s = Computer(l, r);//площадь съеденного
+            Console.WriteLine(s);//ответ
+            Console.ReadKey();
+        }
+
+        private static double Computer(double l, double r)//вычисления площади
+        {
+            if (l * l <= 2.00 * r) return l * l;//если квадрат в круге выводим площадь квадрата
+            else if (l >= 2.00 * r) return Math.PI * r * r;//если круг в квадрате выводим площадь круга
+            else//если квадрат и круг пересекаются
+            {
+                double firstSector = l * Math.Sqrt(4.00 * r * r - l * l);
+                //считаем восемь равных пересекающихся с квадратом секторов круга, стороны каждого из которых равны радиусу, полоаине стороны,
+                // третья - по теореме Пифагора(только то, что лежит в квадрате)
+                double secondSector = Math.PI * r * r * (1 - Math.Acos(l * r / 2.00));
+                //считаем восемь равных секторов круга второго типа, полностью лежащих в квадрате, методом вычитания из полной площади круга
+                //площадь восьми секторов первого типа(считаем полную площадь этих секторов)
+                return firstSector + secondSector;//складываем те и другие
+            }
+        }
+    }
+}
