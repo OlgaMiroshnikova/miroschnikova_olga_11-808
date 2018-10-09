@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp11
+{
+    class Program//Мирошникова Ольга Массивы-Семинар-2
+    {
+        static void Main(string[] args)
+        {
+            double count = double.Parse(Console.ReadLine());//число, которое нужно перевести
+            double a = double.Parse(Console.ReadLine());//система счисления этого чила
+            double b = double.Parse(Console.ReadLine());//система счисления числа, в которое нужно превратить введенное
+            count = TranslateCountTen(count, a);//в десятичную систему
+            count = TransleteCountDown(count, b);//из десятичной в нужную; down - в систему ниже
+            Console.WriteLine(count);//вывод
+            Console.ReadKey();
+        }
+
+        private static double TranslateCountTen(double count, double b)//по правилу перевода с расставлением степеней(с конца 0 и тд)
+        {
+            double returns = 0;//нужное число
+            double stepen = 0;//степень, постепенно повышаемая
+            while (count > 0)//пока есть, что делить
+            {
+                returns += (count % 10)*Math.Pow(b,stepen);
+                stepen += 1;
+                count = count / 10;
+            }
+            return returns;
+        }
+
+        private static double TransleteCountDown(double count, double sistemNumber)//из десятичной в любую простым делением
+        {
+            string returns = "";//строкой, чтобы спокойно добавлять
+            while (count > 0)//пока есть, что делить
+            {
+                returns += (count % sistemNumber).ToString();//остаток к концу строки
+                count = count / sistemNumber;
+            }
+            return int.Parse(returns);//переводим для дальнейшего удобства
+        }
+    }
+}
