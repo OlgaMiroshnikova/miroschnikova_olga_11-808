@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp11
+{
+    class Program//Мирошникова Ольга Массивы-Семинар-1
+    {
+        static void Main(string[] args)
+        {
+            int count = int.Parse(Console.ReadLine());//количество элементов в массиве
+            var arr = new int[count];//данный массив
+            for (int i = 0; i < count; i++)//ввод массива
+                arr[i] = int.Parse(Console.ReadLine());
+            int step = int.Parse(Console.ReadLine());//количество шагов сдвига вправо
+            if (count % step != 0)//если количество элементов не кратно количеству шагов
+            {//то за count шагов мы пройдем весь массив, не заходя в одни и те же клетки
+                Array.Reverse(arr);//перевернем
+                int ar0 = arr[0];//элемент, которому первому присваиваем значение
+                int j = 0;//как i, но можно изменять в цикле как нужно нам
+                for (int i = 0; i < (count-1); i++)//учитываем нулевой элемент
+                {
+                    arr[j] = arr[(j + step) % count];
+                    j = (j + step) % count;
+                }
+                arr[j] = ar0;//учитываем нулевой элемент
+            }
+            else
+            {
+                Array.Reverse(arr);//если кратно, то пройдемся за count, в step подходов
+                for (int i = 0; i < (step - 1); i++)//количество подходов
+                {
+                    int j = i;
+                    int ar0 = arr[i];
+                    for (int i1 = 0; i1 < (count / step - 1); i1++)
+                    {
+                        arr[j] = arr[(j + step) % count];
+                        j = (j + step) % count;
+                    }
+                    arr[j] = ar0;
+                }//все по типу цикла выше
+            }
+            Array.Reverse(arr);//переворачиваем обратно
+            for (int i = 0; i < count; i++)//вывод массива
+                Console.WriteLine(arr[i]);
+        }
+    }
+}
